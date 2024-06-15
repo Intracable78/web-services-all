@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  authentication-service:
+    build:
+      context: ./authentication-service
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./authentication-service:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      MONGO_URI: mongodb://mongo:27017/movies
+
+  movie-service:
+    build:
+      context: ./movie-service
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    volumes:
+      - ./movie-service:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      MONGO_URI: mongodb://mongo:27017/movies
+
+  reservation-service:
+    build:
+      context: ./reservation-service
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mongo
+      - authentication-service
+      - movie-service
+    volumes:
+      - ./reservation-service:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      MONGO_URI: mongodb://mongo:27017/movies
+      AUTH_SERVICE_URL: http://authentication-service:4000
+      MOVIE_SERVICE_URL: http://movie-service:3000
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
