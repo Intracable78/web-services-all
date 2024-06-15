@@ -16,7 +16,7 @@ Clonez le dépôt GitHub pour obtenir le code source :
 
 lancez les commandes suivantes dans votre bash :
 
-- git clone
+- git clone : https://github.com/Intracable78/web-services-all
 - cd web-service-all
 - docker-compose up --build
 
@@ -45,4 +45,5 @@ lancez les commandes suivantes dans votre bash :
 ## Pour finir
 
 Etant tout seul et par manque de temps, je n'ai pas pu connecter tous les services entre eux (surtout pour la reservation ou je n'ai pas eu le temps de gérer la seance, le cinema et autre. La mise en place des "micro services" a été interessant à découvrir et à mettre en place avec docker, et de voir comment marchait la communication entre eux (mes services arrivent bien à communiquer entre-eux). Même si j'ai créé les routes et fonctions, je n'ai pas eu le temps de les gérer entre eux.) Je n'ai pas trouvé de groupe, donc j'ai fait comme j'ai pu avec le temps que j'avais. Mais j'ai quand même beaucoup appris avec la mise en place des diverses services. Merci.
+
 # web-services-all
